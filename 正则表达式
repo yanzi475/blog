@@ -1,0 +1,67 @@
+## 正则 ##
+
+ 你所未知的正则，你所恐惧的正则，你所感叹的正则。
+
+## 基本元素 ##
+
+* 匹配对象元字符 
+. [...] [^...]  \char
+* 计数功能的元字符
+？ ＊ ＋ ［min,max］
+* 匹配位置的元字符
+^ $
+* 其它
+｜ （）
+* 几个常用的： .,+ ,? ,{n},{n,} ,{n,m} ,\d ,\w \s,[XYZ] ,[XYZ]+,$ ,^ ,[a-z] ,[^a-z]。
+ 
+* i 不区分大小写搜索
+* m 多行搜索
+* g 全局搜索
+
+
+
+
+## 几条规则 ##
+
+* 下载安装，任选其一SourceTree/SmartGit
+* js 中的常用函数：test();split();replace();match();
+* /[A-Za-z_-]+/.test(username) ;str.split(/\s/);str.replace(/[^A-Za-z\d_-]+/, '');str.match(/e/)
+* 反义元字符｛［（\ ^ $ | ? * + .）］｝, 用／来进行转义
+* 贪婪与懒惰规则
+ ＊？
+ ＋？
+ ??
+｛n,m}?
+ {n,}?
+
+当正则表达式中包含能接受重复的限定符时，通常的行为是（在使整个表达式能得到匹配的前提下）匹配尽可能多的字符。以这个表达式为例：a.*b，它将会匹配最长的以a开始，以b结束的字符串。如果用它来搜索aabab的话，它会匹配整个字符串aabab。这被称为贪婪匹配。
+有时，我们更需要懒惰匹配，也就是匹配尽可能少的字符。前面给出的限定符都可以被转化为懒惰匹配模式，只要在它后面加上一个问号?。这样.*?就意味着匹配任意数量的重复，但是在能使整个匹配成功的前提下使用最少的重复。现在看看懒惰版的例子吧：
+a.*?b匹配最短的，以a开始，以b结束的字符串。如果把它应用于aabab的话，它会匹配aab（第一到第三个字符）和ab（第四到第五个字符）。
+
+
+## 几个栗子 ##
+* username   /^[a-z0-9_-]{3,16}$/  
+* email    /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ 
+* url     /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
+* 去除文本首位的空白字符（可扩展）/^\s+/    /\s+$/   /(^\s+)|(\s+$)/g
+
+
+
+## 常用总结 ##
+
+* 安装 [Alfred](https://www.alfredapp.com/)
+* 安装[item2](hhttps://www.iterm2.com/)
+* 下载安装git
+* 下载安装，任选其一SourceTree/SmartGit
+* 代理工具shadowsocks
+
+
+## 收藏地址 ##
+
+* 奇舞周刊 [奇舞周刊](http://www.w3ctrain.com/2015/10/13/regular-expressions-introduction/)
+* 栗子 [栗子](https://code.tutsplus.com/tutorials/8-regular-expressions-you-should-know--net-6149)
+* 正则 [正则](http://deerchao.net/tutorials/regex/regex.htm)
+* 工具 [工具](http://regexr.com/)
+*  git [git](https://github.com/limingziqiang/functions)
+*  精通正则表达式
+
