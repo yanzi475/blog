@@ -1,0 +1,49 @@
+## 工具安装整理 ##
+
+ 工欲善其事，必先利其器。以下是最近安装倒腾的工具，然后，简单的梳理下，以便以后查阅。
+
+## 开发工具 ##
+
+作为前端开发工具，之前一直是使用sublime ，webstorm 和IntelliJ IDEA ,前一个是免费的，后两个都需要激活码，网上搜下就可以了，根据需要选择自己熟悉的（指的是快捷键的熟练程度）。以及相关插件。
+   对于Mac ，首先在APPStore 中安装xcode ,在进行安装[homebrew](http://brew.sh/index_zh-cn.html)的使用— OS X 不可或缺的套件管理器 ，
+打开终端窗口, 粘贴以上脚本：   
+      
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/instal)"
+	
+   
+安装好brew 之后，只需一条命令就可以安装node 以及相关软件。
+
+* 安装Node.js 和 npm : brew install node
+*  homebrew 官网 https://brew.sh/index_zh-cn.html
+*  window 下进入nodejs 官网 下载安装，推荐使用默认路径，这样node和npm 就安装好了，可以进入命令行查看版本等信息
+
+
+
+
+## 版本管理工具 ##
+
+
+* 安装Gulp : npm install -g gulp
+* 安装 webpack : npm install -g webpack
+* 下载安装git
+* 下载安装，任选其一SourceTree/SmartGit
+* 代码编辑器，webstorm,vscode ,sublime,
+* 代码检查工具 esline
+ 
+
+
+## android和 ios 模拟工具 ##
+* 安装jdk和 Android studio 
+* 安装模拟器 Gemymotion
+* 安装 Cordova  终端命令sudo npm install -g cordova@5.1.1
+* 翻墙工具： shadow socks,一枝红杏ss
+
+
+
+## 效率工具 ##
+
+* 安装 [Alfred](https://www.alfredapp.com/)
+* 安装[item2](hhttps://www.iterm2.com/)
+* 下载安装git
+* 下载安装，任选其一SourceTree/SmartGit
+* 代理工具shadowsocks
