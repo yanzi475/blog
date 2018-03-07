@@ -1,0 +1,143 @@
+* Event Loop 
+* Macrotasks 与 Microtasks
+
+
+ 首先从一个简单的题目看他的输出是什么呢？
+ 
+ ```
+async function async1(){
+    console.log('async1 start');
+    await async2();
+    console.log('async1 end');
+}
+
+
+async function async2(){
+    console.log('async2 ');
+
+}
+console.log('script start ');
+function resolve() {
+
+}
+
+setTimeout(function () {
+    console.log('setTimeout ');
+
+
+},0);
+
+
+function* gen(){
+    yield 'h';
+    yield 'y';
+    return '!';
+}
+
+async1();
+var g = gen();
+var vulue1= g.next();
+console.log(vulue1);
+
+async1();
+
+var value2 = g.next();
+console.log(value2);
+
+var value3 = g.next();
+console.log(value3);
+
+
+
+new Promise (function (resolve) {
+    console.log('promise1 ');
+    resolve(
+        console.log('promise1  resolve')
+    );
+
+}).then(function () {
+    console.log('promise2 ');
+
+});
+console.log('script end ');
+
+// async1();
+
+
+// 浏览器运行结果如下：
+
+//  script start
+//  async1 start
+//  async2
+// {value: "h", done: false}
+// {value: "y", done: false}
+// {value: "!", done: true}
+//  promise1
+//  script end
+//  promise2
+//  async1 end
+// undefined
+//  setTimeout
+ 
+ ```
+ 
+ 从以上运行可以看出3个点  
+ * setTimeout 放在了 Macrotasks 与 promise 放入Microtasks
+ *  async函数返回的是一个promise对象，如果在函数中 return 一个直接量，async 会把这个直接量通过 Promise.resolve() 封装成 Promise 对象。
+ *  await是一个让出线程的标志
+ *  generator 异步可以控制暂停和执行的节奏
+   
+   
+ ####  await 如何让出线程
+ 
+ ```
+ function testSometing() {
+    console.log("执行testSometing");
+    return "testSometing";
+}
+
+async function testAsync() {
+    console.log("执行testAsync");
+    return Promise.resolve("hello async");
+}
+
+async function test() {
+    console.log("test start...");
+    const v1 = await testSometing();//关键点1
+    console.log(v1);
+    const v2 = await testAsync();
+    console.log(v2);
+    console.log(v1, v2);
+}
+
+test();
+
+var promise = new Promise((resolve)=> { console.log("promise start.."); resolve("promise");});//关键点2
+promise.then((val)=> console.log(val));
+
+console.log("test end...")
+ 
+ ```  
+ 
+ ```
+ test start...
+执行testSometing
+promise start..
+test end...
+testSometing
+执行testAsync
+promise
+hello async
+testSometing hello async
+
+ ```
+ 
+ 
+ 实际上await是一个让出线程的标志。await后面的函数会先执行一遍，然后就会跳出整个async函数来执行后面js栈（后面会详述）的代码。等本轮事件循环执行完了之后又会跳回到async函数中等待await
+后面表达式的返回值，如果返回值为非promise则继续执行async函数后面的代码，否则将返回的promise放入promise队列（Promise的Job Queue）
+
+[await的参考](https://segmentfault.com/a/1190000011296839)
+   
+ 
+  
+ 
