@@ -246,3 +246,72 @@ hello.prototype = {
 
 ## Decorator
 修饰器（Decorator）是一个函数，发生在编译阶段用来修改类的行为。
+
+## 模块加载import/export  与node 中require/module.export (commonjs)
+相同点：
+* es6模块加载和CommonJS相似，都支持单一引入和循环依赖
+* es6模块加载和AMD相似，支持异步加载模块
+
+不同点：
+
+```
+// es6
+//------ lib.js ------
+export let counter = 3;
+export function incCounter() {
+    counter++;
+}
+//------ main1.js ------
+import { counter, incCounter } from './lib';
+// The imported value `counter` is live
+console.log(counter); // 3
+incCounter();
+console.log(counter); // 4
+
+
+/**
+** node  模块加载的方式
+*/
+
+// demo.js
+var s = 1
+s++
+var m = s
+function addString(h) {
+    m +=h
+    console.log(m)
+}
+module.exports = {
+    m: m,
+    addString: addString
+}
+
+// main.js
+
+var m = require('./demo')
+var m1 = require('./demo')
+m.addString(5)  //7
+console.log(m.m)  //2
+console.log(m1.m)//2
+var m2 = require('./demo')
+console.log(m2.m)//2
+
+// 7
+// 2
+// 2
+// 2
+
+
+
+```
+
+* 解析：找到该文件的绝对路径。
+* 加载：确定文件内容的类型。
+* 打包：为文件划分私有作用域，这样 require 和 module 两个对象对于我们要引入的每个模块来说就都是本地的。
+* 评估：最后由虚拟机对加载得到的代码做评估。
+* 缓存：当再次引用该文件时，无需再重复以上步骤。***多次引入只有一份文件；都会取第一次load的缓存，不会出现循环依赖的死循环***
+
+
+
+}`
+}`
