@@ -6,7 +6,7 @@
 # 2018
 [如何理解vuex 比redux 更适合vue](https://github.com/yanzi475/blog/issues/1)
 
-[公众号](https://github.com/yanzi475/blog/issues/2)
+[vue中的微信授权，微信分享，微信支付踩坑汇总](https://github.com/yanzi475/blog/issues/2)
 
 
 
